@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://argoproj.github.io/argo-helm
     targetRevision: 0.8.4
-    chart: argo/argocd-image-updater
+    chart: argocd-image-updater
   project: argocd
   syncPolicy:
     automated:
