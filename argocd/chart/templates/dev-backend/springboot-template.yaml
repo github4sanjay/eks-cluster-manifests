@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dev-springboot-template
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: develop
+    server: https://kubernetes.default.svc
+  source:
+    path: springboot-template/chart
+    repoURL: https://git.jetbrains.space/opiniongist/sp/gitops.git
+    targetRevision: HEAD
+    helm:
+      valueFiles: ["values-develop.yaml"]
+  project: dev-backend
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dev-platform-cluster
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: "*"
+    server: https://kubernetes.default.svc
+  source:
+    path: platform-cluster/chart
+    repoURL: https://git.jetbrains.space/opiniongist/sp/eks-cluster-manifests.git
+    targetRevision: HEAD
+    helm:
+      valueFiles: ["values-develop.yaml"]
+  project: dev-platform-cluster
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
