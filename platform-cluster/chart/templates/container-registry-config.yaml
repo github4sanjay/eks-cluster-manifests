@@ -8,4 +8,4 @@ data:
     - name: Jetbrain Space
       api_url: https://opiniongist.registry.jetbrains.space
       prefix: jetbrains.space
-      credentials: secret:default/container-registry#credential
+      credentials: secret:argocd/container-registry#credential
