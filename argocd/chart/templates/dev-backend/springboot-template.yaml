@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   source:
     path: springboot-template/chart
-    repoURL: https://git.jetbrains.space/opiniongist/sp/gitops.git
+    repoURL: https://github.com/github4sanjay/gitops.git
     targetRevision: HEAD
     helm:
       valueFiles: ["values-develop.yaml"]

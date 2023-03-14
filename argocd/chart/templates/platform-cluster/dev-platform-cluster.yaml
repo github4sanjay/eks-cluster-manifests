@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   source:
     path: platform-cluster/chart
-    repoURL: https://git.jetbrains.space/opiniongist/sp/eks-cluster-manifests.git
+    repoURL: https://github.com/github4sanjay/eks-cluster-manifests.git
     targetRevision: HEAD
     helm:
       valueFiles: ["values-develop.yaml"]
