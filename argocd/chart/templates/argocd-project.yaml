@@ -1,24 +1,3 @@
----
-apiVersion: argoproj.io/v1alpha1
-kind: AppProject
-metadata:
-  name: cicd-cluster
-  namespace: argocd
-  # Finalizer that ensures that project is not deleted until it is not referenced by any application
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  description: cicd-cluster
-  sourceRepos:
-    - '*'
-  destinations:
-    - namespace: "*"
-      server: https://kubernetes.default.svc
-  clusterResourceWhitelist:
-    - group: '*'
-      kind: '*'
-
----
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
@@ -53,38 +32,4 @@ spec:
   - '*'
   destinations:
   - namespace: develop
-    server: https://kubernetes.default.svc
-
----
-apiVersion: argoproj.io/v1alpha1
-kind: AppProject
-metadata:
-  name: test-backend
-  namespace: argocd
-  # Finalizer that ensures that project is not deleted until it is not referenced by any application
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  description: test-backend
-  sourceRepos:
-  - '*'
-  destinations:
-  - namespace: test
-    server: https://kubernetes.default.svc
-
----
-apiVersion: argoproj.io/v1alpha1
-kind: AppProject
-metadata:
-  name: prod-backend
-  namespace: argocd
-  # Finalizer that ensures that project is not deleted until it is not referenced by any application
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  description: prod-backend
-  sourceRepos:
-  - '*'
-  destinations:
-  - namespace: prod
     server: https://kubernetes.default.svc
