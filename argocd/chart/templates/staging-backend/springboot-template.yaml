@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: staging-springboot-template
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: test
+    server: https://kubernetes.default.svc
+  source:
+    path: springboot-template/chart
+    repoURL: https://github.com/github4sanjay/gitops.git
+    targetRevision: HEAD
+    helm:
+      valueFiles: ["values-staging.yaml"]
+  project: staging-backend

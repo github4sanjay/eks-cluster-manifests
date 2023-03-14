@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: staging-platform-cluster
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: test
+    server: https://kubernetes.default.svc
+  source:
+    path: platform-cluster/chart
+    repoURL: https://github.com/github4sanjay/eks-cluster-manifests.git
+    targetRevision: HEAD
+    helm:
+      valueFiles: ["values-staging.yaml"]
+  project: staging-platform-cluster
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

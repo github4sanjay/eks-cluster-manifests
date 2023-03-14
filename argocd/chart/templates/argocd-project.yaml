@@ -33,3 +33,20 @@ spec:
   destinations:
   - namespace: develop
     server: https://kubernetes.default.svc
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: staging-backend
+  namespace: argocd
+  # Finalizer that ensures that project is not deleted until it is not referenced by any application
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: staging-backend
+  sourceRepos:
+    - '*'
+  destinations:
+    - namespace: test
+      server: https://kubernetes.default.svc
